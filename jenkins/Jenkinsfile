@@ -1,16 +1,16 @@
 
 
 pipeline {
-    agent {
-        dockerfile {
-            label "docker"
-        }
-    }
+    agent any
     stages {
-
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
         stage('Test') {
             steps {
-                sh 'npm install ./jenkins/scripts/test.sh'
+                sh './jenkins/scripts/test.sh'
             }
         }
         stage('Deliver') { 
